@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
 
 export default function SearchBar(props) {
 
@@ -6,10 +6,7 @@ export default function SearchBar(props) {
 
   function handleSearch(e) {
     const stock = inputValue.current.value;
-    if (stock === '') return
-    // props.setCompanyName(companyList => {
-    //   return [...companyList, stock]
-    // });
+    if (stock === '') return;
     props.setCompanyName(stock);
     inputValue.current.value = null;
   }

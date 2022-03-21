@@ -4,7 +4,7 @@ import Chart from './Chart';
 
 
 function App() {
-  const [companyName, setCompanyName] = useState('AAPL');
+  const [companyName, setCompanyName] = useState('');
 
   return (
     <>

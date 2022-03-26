@@ -4,32 +4,28 @@ import { Line } from 'react-chartjs-2';
 
 
 export default function Chart(props) {
-
+    
     const [stockInfo, setStockInfo] = useState([]);
     const findStock = props.companyName;
-    const isMounted = useRef(false);
-
+    
     useEffect(() => {
-        if (isMounted.current) {
+        if (props.companyName !== '') {
             const getStockPrices = async () => {
                 const api_url = `https://twelve-data1.p.rapidapi.com/time_series?order=ASC&symbol=${findStock}&interval=1month&outputsize=30&format=json`;
                 const response = await fetch(api_url, {
                     "method": "GET",
                     "headers": {
-                    "x-rapidapi-host": "twelve-data1.p.rapidapi.com",
-                    "x-rapidapi-key": "0cfeed69acmshcf2f63272ffecb8p1103e6jsn55810a173bfa"
-                }
+                        "x-rapidapi-host": "twelve-data1.p.rapidapi.com",
+                        "x-rapidapi-key": "0cfeed69acmshcf2f63272ffecb8p1103e6jsn55810a173bfa"
+                    }
                 });
                 const stockData = await response.json();
                 setStockInfo(stockData.values);
             }
-            getStockPrices();  
-        } else {
-            isMounted.current = true;
+            getStockPrices();
         }
     }, [props.companyName]);
-
-  if (!isMounted.current) {
+  if (props.companyName === '') {
       return (<div></div>)
   } else {
       return (
